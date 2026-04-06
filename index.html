@@ -6,323 +6,124 @@
 <title>UBS CV Builder — Build Review Page</title>
 <style>
   :root {
-    --bg: #0f172a;
-    --surface: #1e293b;
-    --border: #334155;
-    --text: #e2e8f0;
-    --muted: #94a3b8;
-    --accent: #60a5fa;
-    --green: #34d399;
-    --yellow: #f59e0b;
-    --red: #ef4444;
-    --orange: #fb923c;
+    --bg: #0f172a; --surface: #1e293b; --border: #334155; --text: #e2e8f0;
+    --muted: #94a3b8; --accent: #60a5fa; --green: #34d399; --yellow: #f59e0b;
+    --red: #ef4444; --orange: #fb923c;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: system-ui, -apple-system, sans-serif;
-    font-size: 15px;
-    line-height: 1.6;
-    padding: 32px 24px;
-    max-width: 960px;
-    margin: 0 auto;
-  }
+  body { background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, sans-serif; font-size: 15px; line-height: 1.6; padding: 32px 24px; max-width: 960px; margin: 0 auto; }
   h1 { color: var(--accent); font-size: 1.6rem; margin-bottom: 4px; }
   h2 { color: var(--green); font-size: 1.1rem; margin: 32px 0 12px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
   h3 { color: var(--yellow); font-size: 0.95rem; margin: 20px 0 8px; }
   .meta { color: var(--muted); font-size: 0.82rem; margin-bottom: 24px; }
-  .badge {
-    display: inline-block;
-    padding: 2px 10px;
-    border-radius: 12px;
-    font-size: 0.78rem;
-    font-weight: 600;
-    margin-right: 6px;
-  }
+  .badge { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 0.78rem; font-weight: 600; margin-right: 6px; }
   .badge-green { background: #064e3b; color: var(--green); }
   .badge-yellow { background: #451a03; color: var(--yellow); }
-  .badge-red { background: #450a0a; color: var(--red); }
   .badge-blue { background: #1e3a5f; color: var(--accent); }
   .badge-gray { background: #1e293b; color: var(--muted); border: 1px solid var(--border); }
-  section {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 20px 24px;
-    margin-bottom: 24px;
-  }
+  section { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 20px 24px; margin-bottom: 24px; }
   table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
   th { text-align: left; padding: 7px 10px; color: var(--muted); border-bottom: 2px solid var(--border); }
   td { padding: 6px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
   tr:last-child td { border-bottom: none; }
-  code {
-    background: #0f172a;
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 1px 6px;
-    font-size: 0.82rem;
-    font-family: 'Menlo', 'Monaco', monospace;
-    color: #7dd3fc;
-  }
-  pre {
-    background: #0f172a;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 14px 16px;
-    font-size: 0.82rem;
-    font-family: 'Menlo', 'Monaco', monospace;
-    color: #7dd3fc;
-    white-space: pre-wrap;
-    word-break: break-word;
-    overflow-x: auto;
-  }
-  .comms-block {
-    background: #0f172a;
-    border: 1px solid var(--accent);
-    border-radius: 6px;
-    padding: 16px 20px;
-  }
+  pre { background: #0f172a; border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px; font-size: 0.82rem; font-family: 'Menlo', monospace; color: #7dd3fc; white-space: pre-wrap; word-break: break-word; }
+  .comms-block { background: #0f172a; border: 1px solid var(--accent); border-radius: 6px; padding: 16px 20px; }
   .comms-label { color: var(--accent); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; margin-bottom: 10px; }
-  .artifact-link {
-    display: inline-block;
-    background: #1e3a5f;
-    color: var(--accent);
-    padding: 6px 14px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-size: 0.85rem;
-    margin: 4px 6px 4px 0;
-    border: 1px solid #3b82f6;
-  }
-  .artifact-link:hover { background: #1e4a7f; }
-  .kitt-box {
-    background: #0f172a;
-    border: 2px solid var(--yellow);
-    border-radius: 8px;
-    padding: 18px 22px;
-  }
+  .artifact-link { display: inline-block; background: #1e3a5f; color: var(--accent); padding: 6px 14px; border-radius: 6px; text-decoration: none; font-size: 0.85rem; margin: 4px 6px 4px 0; border: 1px solid #3b82f6; }
+  .kitt-box { background: #0f172a; border: 2px solid var(--yellow); border-radius: 8px; padding: 18px 22px; }
   .kitt-label { color: var(--yellow); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; margin-bottom: 10px; }
   .kitt-instructions { color: var(--muted); font-size: 0.85rem; }
-  ul { padding-left: 20px; }
-  li { margin-bottom: 4px; }
-  .step-complete { color: var(--green); }
-  .step-active { color: var(--yellow); }
-  .step-pending { color: var(--muted); }
+  ul { padding-left: 20px; } li { margin-bottom: 4px; }
   hr { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
   .timestamp { color: var(--muted); font-size: 0.78rem; font-style: italic; }
+  .open-item { background: #1c1408; border: 1px solid var(--yellow); border-radius: 6px; padding: 10px 14px; font-size: 0.85rem; color: var(--yellow); margin-top: 12px; }
 </style>
 </head>
 <body>
 
-<!-- ============================================================
-     MACHINE-READABLE HEADER — DO NOT REMOVE
-     ============================================================ -->
 <h1>UBS CV Builder — Build Review Page</h1>
 <p class="meta">
   Project: <strong>ubs-cv-builder</strong> &nbsp;|&nbsp;
   Protocol: <strong>ADR-018 / KITT&#8596;C6</strong> &nbsp;|&nbsp;
-  Page updated: <strong id="updated">2026-04-06T18:47:00Z</strong> &nbsp;|&nbsp;
+  Page updated: <strong>2026-04-06T19:00:00Z</strong> &nbsp;|&nbsp;
   Maintained by: <strong>C6-Desktop (Cayde-6)</strong>
 </p>
 
-<!-- ============================================================
-     SECTION 1: CURRENT REVIEW PACKET
-     This section is always the active review target.
-     KITT: read this section first.
-     ============================================================ -->
+<!-- SECTION 1: CURRENT REVIEW PACKET -->
 <h2 id="current-review">&#9654; CURRENT REVIEW PACKET</h2>
 <section>
   <p>
-    <span class="badge badge-yellow">AWAITING KITT AUTHORIZATION</span>
-    <span class="badge badge-blue">Step 2 &#8594; Step 3 Gate</span>
+    <span class="badge badge-yellow">&#128679; IN PROGRESS</span>
+    <span class="badge badge-blue">Step 3 — Section-Based Editor UI</span>
     <span class="timestamp">Updated: 2026-04-06</span>
   </p>
 
-  <h3>Review Request</h3>
-  <p>
-    Step 2 (PDF Renderer Proof) is complete. C6 is requesting KITT's formal sign-off on Step 2
-    and authorization to proceed to Step 3 (Section-Based Editor UI).
-    The proof PDF is linked below as an artifact.
-  </p>
+  <h3>Current Status</h3>
+  <p>Step 3 is authorized and in progress. C6 is executing Node 3.1 (route scaffold + editor layout shell). No KITT review required until Step 3 completion.</p>
 
-  <h3>Step 2 Summary — PDF Renderer Proof</h3>
+  <h3>KITT Step 2 Authorization — Recorded</h3>
   <ul>
-    <li>Built HTML template layering text over fixed UBS background PNGs using absolute positioning.</li>
-    <li>Rendered one complete example CV matching the UBS_CV_Example structure.</li>
-    <li>Generated PDF via Puppeteer (single rendering path: HTML = preview = export).</li>
-    <li>Renderer, proof PDF, and overflow detection logic are all in place.</li>
-    <li><strong>Calibration pass (coordinates and font sizing) has NOT been explicitly confirmed by KITT.</strong> This is a known open item.</li>
+    <li><strong>Step 2 status:</strong> Accepted with calibration reserved</li>
+    <li><strong>Accepted:</strong> Two-page renderer proof, repeated header behavior, section ordering/flow, public review surface via Build Page</li>
+    <li><strong>NOT accepted as final:</strong> Coordinate calibration, font-size tuning, typographic polish for production issue</li>
+    <li><strong>Open item (tracked):</strong> Calibration pass against canonical UBS reference — reserved for Step 10 (QA + Hardening)</li>
+    <li><strong>Constraint from KITT:</strong> Step 3 must not destroy the single-render-path architecture established in Step 2</li>
   </ul>
 
-  <h3>Questions for KITT</h3>
-  <ol>
-    <li>Does the two-page proof layout match the expected UBS CV example structure?</li>
-    <li>Are text coordinates and font sizes visually acceptable or is a calibration pass required before Step 3?</li>
-    <li>Is overflow behavior acceptable at this stage?</li>
-    <li><strong>Explicit authorization: proceed to Step 3 (Section-Based Editor UI) — YES or NO?</strong></li>
-  </ol>
-
-  <h3>Artifacts</h3>
-  <a class="artifact-link" href="artifacts/proof-output.pdf" target="_blank">&#128196; proof-output.pdf (Proof PDF — Step 2)</a>
-  <a class="artifact-link" href="artifacts/template-contract.md" target="_blank">&#128196; template-contract.md</a>
-  <a class="artifact-link" href="artifacts/overflow-policy.md" target="_blank">&#128196; overflow-policy.md</a>
-
-  <div class="comms-block" style="margin-top:20px;">
-    <div class="comms-label">[[START COMMS BLOCK — Step 2 Completion]]</div>
-    <pre>Step: Phase 1 / Step 2
-Sub-step: PDF Renderer Proof — Completion
-Intended Recipients: KITT (review + authorization)
-
-COMPLETED:
-- HTML/CSS template rendering text over fixed UBS background PNGs
-- Puppeteer PDF generation (single render path)
-- Overflow detection logic wired to overflow-policy.md rules
-- Two-page proof PDF generated (scripts/proof-output.pdf)
-
-OPEN ITEM:
-- Calibration pass on text coordinates and font sizing is UNCONFIRMED
-- KITT review of proof PDF is required before Step 3 is authorized
-
-KITT ACTION REQUIRED:
-- Review proof-output.pdf artifact (linked above)
-- Confirm or reject Step 2 acceptance
-- State whether calibration pass is required before Step 3
-- Explicitly authorize or block Step 3
-
-NEXT STEP (pending KITT):
-- Step 3: Section-Based Editor UI
-
-BLOCKERS:
-- KITT Step 2 sign-off not yet received
-
-ADRs REFERENCED: ADR-018</pre>
-    <div class="comms-label" style="margin-top:10px;">[[END COMMS BLOCK]]</div>
+  <div class="open-item">
+    &#9888; OPEN ITEM: Calibration pass (text coordinates + font sizing) against canonical UBS reference output — reserved for Step 10. Do not treat Step 2 acceptance as typography finalized.
   </div>
 
-  <div class="kitt-box" style="margin-top:20px;">
-    <div class="kitt-label">&#9650; KITT RESPONSE AREA</div>
-    <p class="kitt-instructions">
-      KITT: This page is <strong>read-only</strong>. You cannot edit it directly.<br/>
-      After reviewing the artifact and the COMMS block above, provide your response
-      (sign-off, calibration notes, Step 3 authorization) in your chat window.
-      Doc will copy your response back to C6 to update the tracker and proceed.
-    </p>
-  </div>
-</section>
-
-<!-- ============================================================
-     SECTION 2: BUILD TRACKER
-     ============================================================ -->
-<h2 id="tracker">&#128203; BUILD TRACKER</h2>
-<section>
+  <h3>Step 3 Node Plan</h3>
   <table>
-    <thead>
-      <tr>
-        <th>Step</th>
-        <th>Name</th>
-        <th>Status</th>
-        <th>Last Completed</th>
-        <th>Next Action</th>
-        <th>Blocker</th>
-      </tr>
-    </thead>
+    <thead><tr><th>Node</th><th>Description</th><th>Status</th></tr></thead>
     <tbody>
-      <tr>
-        <td>1</td>
-        <td>Schema + Constraints + Template Contract</td>
-        <td><span class="badge badge-green step-complete">&#10003; complete</span></td>
-        <td>Node 1.7 — 2026-04-05</td>
-        <td>&#8212;</td>
-        <td>&#8212;</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>PDF Renderer Proof</td>
-        <td><span class="badge badge-yellow step-active">&#9651; awaiting KITT</span></td>
-        <td>Node 2.2 — Proof PDF — 2026-04-05</td>
-        <td>KITT review of proof PDF. Authorize Step 3.</td>
-        <td>KITT sign-off pending</td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td>Section-Based Editor UI</td>
-        <td><span class="badge badge-gray step-pending">not started</span></td>
-        <td>&#8212;</td>
-        <td>Pending Step 2 authorization</td>
-        <td>&#8212;</td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td>Draft Persistence + Versioning</td>
-        <td><span class="badge badge-gray step-pending">not started</span></td>
-        <td>&#8212;</td>
-        <td>&#8212;</td>
-        <td>&#8212;</td>
-      </tr>
-      <tr>
-        <td>5</td>
-        <td>Submission Workflow</td>
-        <td><span class="badge badge-gray step-pending">not started</span></td>
-        <td>&#8212;</td>
-        <td>&#8212;</td>
-        <td>&#8212;</td>
-      </tr>
-      <tr>
-        <td>6</td>
-        <td>Admin Dashboard</td>
-        <td><span class="badge badge-gray step-pending">not started</span></td>
-        <td>&#8212;</td>
-        <td>&#8212;</td>
-        <td>&#8212;</td>
-      </tr>
-      <tr>
-        <td>7</td>
-        <td>Admin Review Actions</td>
-        <td><span class="badge badge-gray step-pending">not started</span></td>
-        <td>&#8212;</td>
-        <td>&#8212;</td>
-        <td>&#8212;</td>
-      </tr>
-      <tr>
-        <td>8</td>
-        <td>AI Upload + Prefill Pipeline</td>
-        <td><span class="badge badge-gray step-pending">not started</span></td>
-        <td>&#8212;</td>
-        <td>&#8212;</td>
-        <td>&#8212;</td>
-      </tr>
-      <tr>
-        <td>9</td>
-        <td>AI Section Assist</td>
-        <td><span class="badge badge-gray step-pending">not started</span></td>
-        <td>&#8212;</td>
-        <td>&#8212;</td>
-        <td>&#8212;</td>
-      </tr>
-      <tr>
-        <td>10</td>
-        <td>QA + Hardening</td>
-        <td><span class="badge badge-gray step-pending">not started</span></td>
-        <td>&#8212;</td>
-        <td>&#8212;</td>
-        <td>&#8212;</td>
-      </tr>
-      <tr>
-        <td>11</td>
-        <td>CRM Integration Planning Hook</td>
-        <td><span class="badge badge-gray step-pending">not started</span></td>
-        <td>&#8212;</td>
-        <td>&#8212;</td>
-        <td>&#8212;</td>
-      </tr>
+      <tr><td>3.1</td><td>Scaffold /editor route + EditorLayout shell + sidebar (8 sections)</td><td><span class="badge badge-yellow">&#11036; active</span></td></tr>
+      <tr><td>3.2</td><td>IdentitySection.svelte + editorStore draft init</td><td><span class="badge badge-gray">pending</span></td></tr>
+      <tr><td>3.3</td><td>Profile, Certifications, Education, Work History section components</td><td><span class="badge badge-gray">pending</span></td></tr>
+      <tr><td>3.4</td><td>Relevant Experience, Notable Losses, Litigation Support components</td><td><span class="badge badge-gray">pending</span></td></tr>
+      <tr><td>3.5</td><td>FormattingHealthPanel (overflow risk, missing fields, reactive)</td><td><span class="badge badge-gray">pending</span></td></tr>
+      <tr><td>3.6</td><td>Live preview panel (debounced, single render path)</td><td><span class="badge badge-gray">pending</span></td></tr>
+      <tr><td>3.7</td><td>E2E verification</td><td><span class="badge badge-gray">pending</span></td></tr>
     </tbody>
   </table>
 </section>
 
-<!-- ============================================================
-     SECTION 3: BUILD PLAN SUMMARY
-     ============================================================ -->
+<!-- SECTION 2: BUILD TRACKER -->
+<h2 id="tracker">&#128203; BUILD TRACKER</h2>
+<section>
+  <table>
+    <thead><tr><th>Step</th><th>Name</th><th>Status</th><th>Last Completed</th><th>Next Action</th><th>Blocker</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>1</td><td>Schema + Constraints + Template Contract</td>
+        <td><span class="badge badge-green">&#10003; complete</span></td>
+        <td>Node 1.7 — 2026-04-05</td><td>&#8212;</td><td>&#8212;</td>
+      </tr>
+      <tr>
+        <td>2</td><td>PDF Renderer Proof</td>
+        <td><span class="badge badge-green">&#10003; accepted (calibration reserved)</span></td>
+        <td>KITT sign-off 2026-04-06</td><td>&#8212;</td><td>&#8212;</td>
+      </tr>
+      <tr>
+        <td>3</td><td>Section-Based Editor UI</td>
+        <td><span class="badge badge-yellow">&#128679; in_progress — Node 3.1</span></td>
+        <td>&#8212;</td>
+        <td>Execute Node 3.1: /editor scaffold</td><td>&#8212;</td>
+      </tr>
+      <tr><td>4</td><td>Draft Persistence + Versioning</td><td><span class="badge badge-gray">not started</span></td><td>&#8212;</td><td>&#8212;</td><td>&#8212;</td></tr>
+      <tr><td>5</td><td>Submission Workflow</td><td><span class="badge badge-gray">not started</span></td><td>&#8212;</td><td>&#8212;</td><td>&#8212;</td></tr>
+      <tr><td>6</td><td>Admin Dashboard</td><td><span class="badge badge-gray">not started</span></td><td>&#8212;</td><td>&#8212;</td><td>&#8212;</td></tr>
+      <tr><td>7</td><td>Admin Review Actions</td><td><span class="badge badge-gray">not started</span></td><td>&#8212;</td><td>&#8212;</td><td>&#8212;</td></tr>
+      <tr><td>8</td><td>AI Upload + Prefill Pipeline</td><td><span class="badge badge-gray">not started</span></td><td>&#8212;</td><td>&#8212;</td><td>&#8212;</td></tr>
+      <tr><td>9</td><td>AI Section Assist</td><td><span class="badge badge-gray">not started</span></td><td>&#8212;</td><td>&#8212;</td><td>&#8212;</td></tr>
+      <tr><td>10</td><td>QA + Hardening <em>(calibration pass here)</em></td><td><span class="badge badge-gray">not started</span></td><td>&#8212;</td><td>&#8212;</td><td>&#8212;</td></tr>
+      <tr><td>11</td><td>CRM Integration Planning Hook</td><td><span class="badge badge-gray">not started</span></td><td>&#8212;</td><td>&#8212;</td><td>&#8212;</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- SECTION 3: BUILD PLAN SUMMARY -->
 <h2 id="build-plan">&#128196; BUILD PLAN SUMMARY</h2>
 <section>
   <p><strong>Product:</strong> UBS CV Builder (stand-alone) &nbsp;|&nbsp;
@@ -330,53 +131,47 @@ ADRs REFERENCED: ADR-018</pre>
      <strong>Stack:</strong> SvelteKit, SQLite, Puppeteer, Tailwind &nbsp;|&nbsp;
      <strong>Approved:</strong> 2026-04-05 (KITT-amended v1.1)</p>
   <p style="margin-top:10px; color: var(--muted); font-size:0.85rem;">
-    The UBS CV Builder is a structured qualifications/CV production system using a fixed branded
-    background template with text overlays. Background is a one-time master asset reused for all CVs.
-    Only text is imported from consultant documents. PDF fidelity is first-class. Approved CVs are
-    immutable snapshots — edits fork a new draft. AI output is reviewable and non-authoritative.
+    Structured qualifications/CV production system using a fixed branded background template with text overlays.
+    Background is a one-time master asset reused for all CVs. PDF fidelity is first-class.
+    Approved CVs are immutable snapshots — edits fork a new draft. AI output is reviewable and non-authoritative.
   </p>
   <h3>Phase Structure</h3>
   <ul style="font-size:0.85rem;">
-    <li><strong>Phase 1:</strong> Template Contract + Renderer Proof (Steps 1-2)</li>
-    <li><strong>Phase 2:</strong> Consultant Editor (Steps 3-4)</li>
+    <li><strong>Phase 1:</strong> Template Contract + Renderer Proof (Steps 1-2) &#10003;</li>
+    <li><strong>Phase 2:</strong> Consultant Editor (Steps 3-4) &#128679;</li>
     <li><strong>Phase 3:</strong> Workflow + Admin (Steps 5-7)</li>
     <li><strong>Phase 4:</strong> AI Assist (Steps 8-9)</li>
-    <li><strong>Phase 5:</strong> Hardening + Integration Hook (Steps 10-11)</li>
+    <li><strong>Phase 5:</strong> Hardening + Integration Hook (Steps 10-11) — calibration pass at Step 10</li>
   </ul>
 </section>
 
-<!-- ============================================================
-     SECTION 4: HISTORY (append-only, newest first)
-     ============================================================ -->
+<!-- SECTION 4: HISTORY -->
 <h2 id="history">&#128336; HISTORY</h2>
 <section>
-  <h3>2026-04-05 — Step 1 Complete: Schema + Constraints + Template Contract</h3>
-  <p style="font-size:0.85rem; color:var(--muted);">
-    Completed: cv-schema.ts, template-config.ts, constraints.ts, overflow-policy.md,
-    page-1.png, page-2.png, template-contract.md. All nodes 1.1–1.7 passed.
-  </p>
+  <h3>2026-04-06 — Build Page v1.0 Deployed</h3>
+  <p style="font-size:0.85rem; color:var(--muted);">Public review surface established. GitHub Pages at docmuller30062.github.io/ubs-cv-build-page/. KITT workflow operational.</p>
   <hr/>
-  <h3>2026-04-05 — Step 2 Complete (pending KITT sign-off): PDF Renderer Proof</h3>
-  <p style="font-size:0.85rem; color:var(--muted);">
-    Completed: HTML renderer, Puppeteer PDF export, overflow detection.
-    Proof PDF generated at scripts/proof-output.pdf. Calibration pass status unconfirmed.
-    KITT review in progress.
-  </p>
+  <h3>2026-04-06 — Step 2 Accepted (KITT sign-off) — calibration reserved</h3>
+  <p style="font-size:0.85rem; color:var(--muted);">KITT reviewed proof-output.pdf. Accepted: renderer proof, section flow, two-page structure, repeated header. Calibration pass deferred to Step 10. Step 3 authorized.</p>
+  <hr/>
+  <h3>2026-04-05 — Step 2 Complete: PDF Renderer Proof</h3>
+  <p style="font-size:0.85rem; color:var(--muted);">HTML renderer, Puppeteer PDF export, overflow detection. Two-page proof PDF generated.</p>
+  <hr/>
+  <h3>2026-04-05 — Step 1 Complete: Schema + Constraints + Template Contract</h3>
+  <p style="font-size:0.85rem; color:var(--muted);">cv-schema.ts, template-config.ts, constraints.ts, overflow-policy.md, background PNGs, template-contract.md.</p>
 </section>
 
-<!-- ============================================================
-     SECTION 5: WORKFLOW RULES (for reference)
-     ============================================================ -->
+<!-- SECTION 5: WORKFLOW RULES -->
 <h2 id="workflow">&#9881; WORKFLOW RULES</h2>
 <section style="font-size:0.85rem; color:var(--muted);">
   <ul>
     <li><strong>C6</strong> implements each step and updates this page at completion.</li>
     <li><strong>Doc</strong> sends KITT the Build Page URL and requests review.</li>
-    <li><strong>KITT</strong> reads the Current Review Packet and responds in its own chat.</li>
-    <li><strong>Doc</strong> copies KITT's response back to C6 to update the tracker and proceed.</li>
+    <li><strong>KITT</strong> reads the Current Review Packet section and responds in its own chat.</li>
+    <li><strong>Doc</strong> copies KITT's response back to C6. C6 updates the tracker and proceeds.</li>
     <li>This page is <strong>read-only for KITT</strong>. No write path exists for KITT.</li>
-    <li>All artifacts are linked directly as public files. No auth required.</li>
-    <li>Critical content is always in plain text — never hidden behind JS, tabs, or modals.</li>
+    <li>All artifacts are linked as direct public files. No auth required.</li>
+    <li>Critical content is always in plain text — never behind JS, tabs, or modals.</li>
     <li>Each update includes a visible timestamp and step ID.</li>
   </ul>
 </section>
