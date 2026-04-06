@@ -1,180 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>UBS CV Builder — Build Review Page</title>
-<style>
-  :root {
-    --bg: #0f172a; --surface: #1e293b; --border: #334155; --text: #e2e8f0;
-    --muted: #94a3b8; --accent: #60a5fa; --green: #34d399; --yellow: #f59e0b;
-    --red: #ef4444; --orange: #fb923c;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, sans-serif; font-size: 15px; line-height: 1.6; padding: 32px 24px; max-width: 960px; margin: 0 auto; }
-  h1 { color: var(--accent); font-size: 1.6rem; margin-bottom: 4px; }
-  h2 { color: var(--green); font-size: 1.1rem; margin: 32px 0 12px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
-  h3 { color: var(--yellow); font-size: 0.95rem; margin: 20px 0 8px; }
-  .meta { color: var(--muted); font-size: 0.82rem; margin-bottom: 24px; }
-  .badge { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 0.78rem; font-weight: 600; margin-right: 6px; }
-  .badge-green { background: #064e3b; color: var(--green); }
-  .badge-yellow { background: #451a03; color: var(--yellow); }
-  .badge-blue { background: #1e3a5f; color: var(--accent); }
-  .badge-gray { background: #1e293b; color: var(--muted); border: 1px solid var(--border); }
-  section { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 20px 24px; margin-bottom: 24px; }
-  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
-  th { text-align: left; padding: 7px 10px; color: var(--muted); border-bottom: 2px solid var(--border); }
-  td { padding: 6px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
-  tr:last-child td { border-bottom: none; }
-  pre { background: #0f172a; border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px; font-size: 0.82rem; font-family: 'Menlo', monospace; color: #7dd3fc; white-space: pre-wrap; word-break: break-word; }
-  .comms-block { background: #0f172a; border: 1px solid var(--accent); border-radius: 6px; padding: 16px 20px; }
-  .comms-label { color: var(--accent); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; margin-bottom: 10px; }
-  .artifact-link { display: inline-block; background: #1e3a5f; color: var(--accent); padding: 6px 14px; border-radius: 6px; text-decoration: none; font-size: 0.85rem; margin: 4px 6px 4px 0; border: 1px solid #3b82f6; }
-  .kitt-box { background: #0f172a; border: 2px solid var(--yellow); border-radius: 8px; padding: 18px 22px; }
-  .kitt-label { color: var(--yellow); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; margin-bottom: 10px; }
-  .kitt-instructions { color: var(--muted); font-size: 0.85rem; }
-  ul { padding-left: 20px; } li { margin-bottom: 4px; }
-  hr { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
-  .timestamp { color: var(--muted); font-size: 0.78rem; font-style: italic; }
-  .open-item { background: #1c1408; border: 1px solid var(--yellow); border-radius: 6px; padding: 10px 14px; font-size: 0.85rem; color: var(--yellow); margin-top: 12px; }
-</style>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>UBS CV Builder — Build Status</title>
+  <style>
+    :root{--bg:#0f172a;--sur:#111827;--bdr:#1e293b;--txt:#e2e8f0;--mut:#94a3b8;--dim:#475569;--blu:#3b82f6;--grn:#4ade80;--amb:#fbbf24;--red:#f87171}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:var(--bg);color:var(--txt);font-family:'Inter',system-ui,sans-serif;font-size:14px;line-height:1.6;padding:32px;max-width:960px;margin:0 auto}
+    h1{font-size:1.5rem;font-weight:700;color:var(--blu);margin-bottom:4px}
+    h2{font-size:.82rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--mut);margin:28px 0 10px;border-bottom:1px solid var(--bdr);padding-bottom:5px}
+    p{color:var(--mut);font-size:.82rem;margin-bottom:8px}
+    a{color:var(--blu);text-decoration:none}
+    .meta{font-size:.75rem;color:var(--dim);margin-bottom:24px}
+    .badge{display:inline-block;font-size:.65rem;font-weight:700;padding:2px 7px;border-radius:10px}
+    .bg{background:#052e16;color:var(--grn)}.ba{background:#451a03;color:var(--amb)}.bb{background:#1e3a5f;color:var(--blu)}.bd{background:var(--bdr);color:var(--dim)}
+    table{width:100%;border-collapse:collapse;font-size:.8rem;margin-bottom:20px}
+    th{text-align:left;padding:6px 10px;color:var(--dim);border-bottom:2px solid var(--bdr)}
+    td{padding:7px 10px;border-bottom:1px solid var(--bdr);color:var(--mut);vertical-align:top}
+    td:first-child{color:var(--txt);font-weight:500}
+    .nh td:first-child{color:var(--dim);font-weight:400;padding-left:24px;font-size:.75rem}
+    .sh td{background:#0d1a2d;color:var(--blu);font-weight:600}
+    pre{background:var(--sur);border:1px solid var(--bdr);border-radius:6px;padding:14px 16px;font-size:.75rem;color:var(--mut);overflow-x:auto;white-space:pre-wrap;line-height:1.5}
+    .box{background:var(--sur);border:1px solid var(--bdr);border-radius:8px;padding:18px 20px;margin-bottom:16px}
+    .af{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+    .a{background:var(--bdr);color:var(--mut);font-size:.7rem;padding:2px 7px;border-radius:4px;font-family:monospace}
+    hr{border:none;border-top:1px solid var(--bdr);margin:24px 0}
+  </style>
 </head>
 <body>
 
-<h1>UBS CV Builder — Build Review Page</h1>
-<p class="meta">
-  Project: <strong>ubs-cv-builder</strong> &nbsp;|&nbsp;
-  Protocol: <strong>ADR-018 / KITT&#8596;C6</strong> &nbsp;|&nbsp;
-  Page updated: <strong>2026-04-06T19:00:00Z</strong> &nbsp;|&nbsp;
-  Maintained by: <strong>C6-Desktop (Cayde-6)</strong>
-</p>
+<h1>🏗️ UBS CV Builder — Build Status</h1>
+<p class="meta">Last updated: 2026-04-07 by C6 &nbsp;|&nbsp; Stack: SvelteKit 2 · Svelte 5 · TypeScript · SQLite · Puppeteer &nbsp;|&nbsp; Repo: <a href="https://github.com/docmuller30062/ubs-cv-build-page">docmuller30062/ubs-cv-build-page</a></p>
 
-<!-- SECTION 1: CURRENT REVIEW PACKET -->
-<h2 id="current-review">&#9654; CURRENT REVIEW PACKET</h2>
-<section>
-  <p>
-    <span class="badge badge-yellow">&#128679; IN PROGRESS</span>
-    <span class="badge badge-blue">Step 3 — Section-Based Editor UI</span>
-    <span class="timestamp">Updated: 2026-04-06</span>
-  </p>
+<h2>📍 Current Status</h2>
+<div class="box">
+  <table>
+    <tr><td>Active Step</td><td><strong>Step 4 — Draft Persistence + Versioning</strong> &nbsp;<span class="badge ba">🔨 in_progress</span></td></tr>
+    <tr><td>Resume Node</td><td><code>node-4-4</code> — Consultant Dashboard (/dashboard) — template + styles pending</td></tr>
+    <tr><td>Nodes Complete</td><td>3 of 6 &nbsp;(4-1 DB schema ✅ · 4-2 CRUD API ✅ · 4-3 EditorPersistence class ✅)</td></tr>
+    <tr><td>KITT Step 3 Sign-off</td><td>2026-04-06 — All 8 sections, health panel, preview pipeline accepted</td></tr>
+    <tr><td>KITT Step 4 Auth</td><td>2026-04-06 — Authorized. Directive: carry existing data contract unchanged</td></tr>
+    <tr><td>Dev Server</td><td>localhost:5173 · /editor · /api/drafts · /dashboard (pending)</td></tr>
+    <tr><td>Database</td><td>better-sqlite3 · data/ubs-cv.db · WAL mode · foreign keys ON</td></tr>
+    <tr><td>Build Page</td><td>Updated 2026-04-07 — Step 4 progress for KITT review</td></tr>
+  </table>
+</div>
 
-  <h3>Current Status</h3>
-  <p>Step 3 is authorized and in progress. C6 is executing Node 3.1 (route scaffold + editor layout shell). No KITT review required until Step 3 completion.</p>
+<h2>📋 Step Tracker</h2>
+<table>
+  <thead><tr><th style="width:40px">#</th><th>Step</th><th style="width:160px">Status</th><th>KITT</th><th>Key Artifacts</th></tr></thead>
+  <tbody>
+    <tr class="sh"><td colspan="5">Phase 1 — Template Contract + Renderer Proof</td></tr>
+    <tr><td>1</td><td>Schema + Constraints + Template Contract</td><td><span class="badge bg">✅ complete</span></td><td>2026-04-05</td><td>cv-schema.ts · constraints.ts · template-config.ts · page-1/2.png</td></tr>
+    <tr><td>2</td><td>PDF Renderer Proof</td><td><span class="badge bg">✅ accepted</span></td><td>2026-04-06 (calibration reserved)</td><td>renderer/template.ts · pdf.ts · overflow.ts · /api/pdf · proof-output.pdf</td></tr>
+    <tr class="sh"><td colspan="5">Phase 2 — Consultant Editor</td></tr>
+    <tr><td>3</td><td>Section-Based Editor UI</td><td><span class="badge bg">✅ complete</span></td><td>2026-04-06</td><td>8 section components · EditorLayout · Sidebar · FormattingHealthPanel · PreviewPane</td></tr>
+    <tr><td>4</td><td>Draft Persistence + Versioning</td><td><span class="badge ba">🔨 in_progress</span></td><td>Authorized 2026-04-06</td><td>db.ts · migrations.ts · /api/drafts · EditorPersistence · dashboard (partial)</td></tr>
+    <tr class="sh"><td colspan="5">Phase 3 — Workflow + Admin</td></tr>
+    <tr><td>5</td><td>Submission Workflow</td><td><span class="badge bd">not started</span></td><td>—</td><td>—</td></tr>
+    <tr><td>6</td><td>Admin Dashboard</td><td><span class="badge bd">not started</span></td><td>—</td><td>—</td></tr>
+    <tr><td>7</td><td>Admin Review Actions</td><td><span class="badge bd">not started</span></td><td>—</td><td>—</td></tr>
+    <tr class="sh"><td colspan="5">Phase 4 — AI Assist</td></tr>
+    <tr><td>8</td><td>AI Upload + Prefill Pipeline</td><td><span class="badge bd">not started</span></td><td>—</td><td>—</td></tr>
+    <tr><td>9</td><td>AI Section Assist</td><td><span class="badge bd">not started</span></td><td>—</td><td>—</td></tr>
+    <tr class="sh"><td colspan="5">Phase 5 — Hardening + Integration Hook</td></tr>
+    <tr><td>10</td><td>QA + Hardening</td><td><span class="badge bd">not started</span></td><td>—</td><td>—</td></tr>
+    <tr><td>11</td><td>CRM Integration Planning Hook</td><td><span class="badge bd">not started</span></td><td>—</td><td>—</td></tr>
+  </tbody>
+</table>
 
-  <h3>KITT Step 2 Authorization — Recorded</h3>
-  <ul>
-    <li><strong>Step 2 status:</strong> Accepted with calibration reserved</li>
-    <li><strong>Accepted:</strong> Two-page renderer proof, repeated header behavior, section ordering/flow, public review surface via Build Page</li>
-    <li><strong>NOT accepted as final:</strong> Coordinate calibration, font-size tuning, typographic polish for production issue</li>
-    <li><strong>Open item (tracked):</strong> Calibration pass against canonical UBS reference — reserved for Step 10 (QA + Hardening)</li>
-    <li><strong>Constraint from KITT:</strong> Step 3 must not destroy the single-render-path architecture established in Step 2</li>
-  </ul>
+<h2>🔩 Step 4 Node Detail</h2>
+<table>
+  <thead><tr><th style="width:70px">Node</th><th>Description</th><th style="width:100px">Status</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr><td>4-1</td><td>DB init: better-sqlite3, migrations (consultants + cv_drafts schema, index)</td><td><span class="badge bg">✅</span></td><td>data/ubs-cv.db · WAL · FK ON · 4 migrations</td></tr>
+    <tr class="nh"><td></td><td colspan="3">src/lib/server/db.ts · src/lib/server/migrations.ts · data/ubs-cv.db (runtime)</td></tr>
+    <tr><td>4-2</td><td>CRUD API: POST/GET /api/drafts · GET/PUT /api/drafts/[id]</td><td><span class="badge bg">✅</span></td><td>All 4 routes smoke-tested via curl. PUT returns 409 on approved drafts.</td></tr>
+    <tr class="nh"><td></td><td colspan="3">routes/api/drafts/+server.ts · routes/api/drafts/[id]/+server.ts</td></tr>
+    <tr><td>4-3</td><td>EditorPersistence class: saveDraft(), loadDraftById(), 3s autosave, save bar</td><td><span class="badge bg">✅</span></td><td>Fixed state_invalid_export — reassigned $state wrapped in class. persistence.saveDraft() smoke-tested: id returned, saveState=saved, DB confirmed.</td></tr>
+    <tr class="nh"><td></td><td colspan="3">stores/editor.svelte.ts (EditorPersistence) · EditorLayout.svelte (autosave $effect + save bar)</td></tr>
+    <tr><td>4-4</td><td>Consultant dashboard at /dashboard — draft list, New CV, Open, version/status</td><td><span class="badge ba">⬜ NEXT</span></td><td>+page.server.ts done. +page.svelte script block done. Template + styles (~40 lines) pending.</td></tr>
+    <tr><td>4-5</td><td>Immutable fork: POST /api/drafts/[id]/fork</td><td><span class="badge bd">⬜</span></td><td>Approved snapshots cannot be edited directly — fork creates new draft.</td></tr>
+    <tr><td>4-6</td><td>E2E: create draft → autosave → reload → persist · approve → fork required</td><td><span class="badge bd">⬜</span></td><td>Manual smoke test</td></tr>
+  </tbody>
+</table>
 
-  <div class="open-item">
-    &#9888; OPEN ITEM: Calibration pass (text coordinates + font sizing) against canonical UBS reference output — reserved for Step 10. Do not treat Step 2 acceptance as typography finalized.
+<h2>🏛️ Architecture — What Is Built</h2>
+<div class="box">
+  <p><strong style="color:var(--txt)">Editor Shell (Step 3 — Complete)</strong></p>
+  <p>Three-column layout: Section Nav Sidebar · Section Form Editor · Formatting Health Panel. Live Preview below center — POST /api/pdf?preview=true, 1500ms debounce, blob URL iframe. Single render path. 8 section components with per-field char counters, required/optional badges, repeatable row add/remove, overflow warnings.</p>
+  <div class="af">
+    <span class="a">EditorLayout</span><span class="a">EditorSidebar</span><span class="a">FormattingHealthPanel</span><span class="a">PreviewPane</span>
+    <span class="a">IdentitySection</span><span class="a">ProfileSection</span><span class="a">RelevantExperienceSection</span>
+    <span class="a">CertificationsSection</span><span class="a">EducationSection</span><span class="a">WorkHistorySection</span>
+    <span class="a">NotableLossesSection</span><span class="a">LitigationSupportSection</span>
   </div>
+</div>
+<div class="box">
+  <p><strong style="color:var(--txt)">Persistence Layer (Step 4 — In Progress)</strong></p>
+  <p>SQLite via better-sqlite3. WAL mode. State machine: draft → submitted → under_review → revision_requested → approved → archived. Approved rows are immutable — PUT returns 409, edits must fork. EditorPersistence class: saveDraft(), loadDraftById(), 3s autosave $effect in EditorLayout, save indicator bar (Saving / Saved / Save failed).</p>
+  <div class="af">
+    <span class="a">src/lib/server/db.ts</span><span class="a">src/lib/server/migrations.ts</span>
+    <span class="a">routes/api/drafts/+server.ts</span><span class="a">routes/api/drafts/[id]/+server.ts</span>
+    <span class="a">stores/editor.svelte.ts (EditorPersistence)</span>
+  </div>
+</div>
 
-  <h3>Step 3 Node Plan</h3>
-  <table>
-    <thead><tr><th>Node</th><th>Description</th><th>Status</th></tr></thead>
-    <tbody>
-      <tr><td>3.1</td><td>Scaffold /editor route + EditorLayout shell + sidebar (8 sections)</td><td><span class="badge badge-yellow">&#11036; active</span></td></tr>
-      <tr><td>3.2</td><td>IdentitySection.svelte + editorStore draft init</td><td><span class="badge badge-gray">pending</span></td></tr>
-      <tr><td>3.3</td><td>Profile, Certifications, Education, Work History section components</td><td><span class="badge badge-gray">pending</span></td></tr>
-      <tr><td>3.4</td><td>Relevant Experience, Notable Losses, Litigation Support components</td><td><span class="badge badge-gray">pending</span></td></tr>
-      <tr><td>3.5</td><td>FormattingHealthPanel (overflow risk, missing fields, reactive)</td><td><span class="badge badge-gray">pending</span></td></tr>
-      <tr><td>3.6</td><td>Live preview panel (debounced, single render path)</td><td><span class="badge badge-gray">pending</span></td></tr>
-      <tr><td>3.7</td><td>E2E verification</td><td><span class="badge badge-gray">pending</span></td></tr>
-    </tbody>
-  </table>
-</section>
+<h2>📡 COMMS Block — For KITT Review</h2>
+<pre>[[START COMMS BLOCK]]
+Step: UBS-CV-STEP-4 — Nodes 4-1, 4-2, 4-3 complete / Node 4-4 partial
+Date: 2026-04-07
 
-<!-- SECTION 2: BUILD TRACKER -->
-<h2 id="tracker">&#128203; BUILD TRACKER</h2>
-<section>
-  <table>
-    <thead><tr><th>Step</th><th>Name</th><th>Status</th><th>Last Completed</th><th>Next Action</th><th>Blocker</th></tr></thead>
-    <tbody>
-      <tr>
-        <td>1</td><td>Schema + Constraints + Template Contract</td>
-        <td><span class="badge badge-green">&#10003; complete</span></td>
-        <td>Node 1.7 — 2026-04-05</td><td>&#8212;</td><td>&#8212;</td>
-      </tr>
-      <tr>
-        <td>2</td><td>PDF Renderer Proof</td>
-        <td><span class="badge badge-green">&#10003; accepted (calibration reserved)</span></td>
-        <td>KITT sign-off 2026-04-06</td><td>&#8212;</td><td>&#8212;</td>
-      </tr>
-      <tr>
-        <td>3</td><td>Section-Based Editor UI</td>
-        <td><span class="badge badge-yellow">&#128679; in_progress — Node 3.1</span></td>
-        <td>&#8212;</td>
-        <td>Execute Node 3.1: /editor scaffold</td><td>&#8212;</td>
-      </tr>
-      <tr><td>4</td><td>Draft Persistence + Versioning</td><td><span class="badge badge-gray">not started</span></td><td>&#8212;</td><td>&#8212;</td><td>&#8212;</td></tr>
-      <tr><td>5</td><td>Submission Workflow</td><td><span class="badge badge-gray">not started</span></td><td>&#8212;</td><td>&#8212;</td><td>&#8212;</td></tr>
-      <tr><td>6</td><td>Admin Dashboard</td><td><span class="badge badge-gray">not started</span></td><td>&#8212;</td><td>&#8212;</td><td>&#8212;</td></tr>
-      <tr><td>7</td><td>Admin Review Actions</td><td><span class="badge badge-gray">not started</span></td><td>&#8212;</td><td>&#8212;</td><td>&#8212;</td></tr>
-      <tr><td>8</td><td>AI Upload + Prefill Pipeline</td><td><span class="badge badge-gray">not started</span></td><td>&#8212;</td><td>&#8212;</td><td>&#8212;</td></tr>
-      <tr><td>9</td><td>AI Section Assist</td><td><span class="badge badge-gray">not started</span></td><td>&#8212;</td><td>&#8212;</td><td>&#8212;</td></tr>
-      <tr><td>10</td><td>QA + Hardening <em>(calibration pass here)</em></td><td><span class="badge badge-gray">not started</span></td><td>&#8212;</td><td>&#8212;</td><td>&#8212;</td></tr>
-      <tr><td>11</td><td>CRM Integration Planning Hook</td><td><span class="badge badge-gray">not started</span></td><td>&#8212;</td><td>&#8212;</td><td>&#8212;</td></tr>
-    </tbody>
-  </table>
-</section>
+COMPLETED:
+- Node 4-1: better-sqlite3 installed. db.ts singleton (WAL, FK ON). migrations.ts:
+  4 migrations — schema_migrations, consultants, cv_drafts, idx_cv_drafts_consultant.
+  DB initializes at data/ubs-cv.db on first server request.
+- Node 4-2: POST /api/drafts (create, auto-creates consultant), GET /api/drafts (list by
+  consultant_id), GET /api/drafts/[id] (load), PUT /api/drafts/[id] (update, immutability
+  enforced: approved status returns 409). All 4 routes smoke-tested via curl.
+- Node 4-3: state_invalid_export fixed — EditorPersistence class wraps draftId / draftStatus
+  / saveState / consultantId. saveDraft() creates or updates. loadDraftById() restores draft
+  to editorDraft. 3000ms autosave $effect in EditorLayout (only when draftId is set).
+  Save bar: Saving / Saved / Save failed / Unsaved changes.
+  Smoke test: persistence.saveDraft() → id mnnu6fef-mf5ra, saveState=saved, DB confirmed.
 
-<!-- SECTION 3: BUILD PLAN SUMMARY -->
-<h2 id="build-plan">&#128196; BUILD PLAN SUMMARY</h2>
-<section>
-  <p><strong>Product:</strong> UBS CV Builder (stand-alone) &nbsp;|&nbsp;
-     <strong>Strategy:</strong> Template-First &nbsp;|&nbsp;
-     <strong>Stack:</strong> SvelteKit, SQLite, Puppeteer, Tailwind &nbsp;|&nbsp;
-     <strong>Approved:</strong> 2026-04-05 (KITT-amended v1.1)</p>
-  <p style="margin-top:10px; color: var(--muted); font-size:0.85rem;">
-    Structured qualifications/CV production system using a fixed branded background template with text overlays.
-    Background is a one-time master asset reused for all CVs. PDF fidelity is first-class.
-    Approved CVs are immutable snapshots — edits fork a new draft. AI output is reviewable and non-authoritative.
-  </p>
-  <h3>Phase Structure</h3>
-  <ul style="font-size:0.85rem;">
-    <li><strong>Phase 1:</strong> Template Contract + Renderer Proof (Steps 1-2) &#10003;</li>
-    <li><strong>Phase 2:</strong> Consultant Editor (Steps 3-4) &#128679;</li>
-    <li><strong>Phase 3:</strong> Workflow + Admin (Steps 5-7)</li>
-    <li><strong>Phase 4:</strong> AI Assist (Steps 8-9)</li>
-    <li><strong>Phase 5:</strong> Hardening + Integration Hook (Steps 10-11) — calibration pass at Step 10</li>
-  </ul>
-</section>
+IN PROGRESS:
+- Node 4-4: /dashboard +page.server.ts complete (loads draft metadata, strips content, returns
+  id/version/status/displayName/timestamps). +page.svelte script block complete (status labels,
+  colors, date formatter). Template markup + styles pending (~40 lines).
 
-<!-- SECTION 4: HISTORY -->
-<h2 id="history">&#128336; HISTORY</h2>
-<section>
-  <h3>2026-04-06 — Build Page v1.0 Deployed</h3>
-  <p style="font-size:0.85rem; color:var(--muted);">Public review surface established. GitHub Pages at docmuller30062.github.io/ubs-cv-build-page/. KITT workflow operational.</p>
-  <hr/>
-  <h3>2026-04-06 — Step 2 Accepted (KITT sign-off) — calibration reserved</h3>
-  <p style="font-size:0.85rem; color:var(--muted);">KITT reviewed proof-output.pdf. Accepted: renderer proof, section flow, two-page structure, repeated header. Calibration pass deferred to Step 10. Step 3 authorized.</p>
-  <hr/>
-  <h3>2026-04-05 — Step 2 Complete: PDF Renderer Proof</h3>
-  <p style="font-size:0.85rem; color:var(--muted);">HTML renderer, Puppeteer PDF export, overflow detection. Two-page proof PDF generated.</p>
-  <hr/>
-  <h3>2026-04-05 — Step 1 Complete: Schema + Constraints + Template Contract</h3>
-  <p style="font-size:0.85rem; color:var(--muted);">cv-schema.ts, template-config.ts, constraints.ts, overflow-policy.md, background PNGs, template-contract.md.</p>
-</section>
+ARCHITECTURAL COMPLIANCE (KITT directives honored):
+- Data contract unchanged: CvDraft serialized as JSON, deserialized on load. No reinterpretation.
+- Immutability boundary: approved row PUT returns 409 at API layer. Fork route (node-4-5) creates
+  new draft from approved content. Draft and approved state cannot silently overwrite each other.
+- Single source of truth: db.ts getDb() singleton. No second schema, no alternate render contract.
 
-<!-- SECTION 5: WORKFLOW RULES -->
-<h2 id="workflow">&#9881; WORKFLOW RULES</h2>
-<section style="font-size:0.85rem; color:var(--muted);">
-  <ul>
-    <li><strong>C6</strong> implements each step and updates this page at completion.</li>
-    <li><strong>Doc</strong> sends KITT the Build Page URL and requests review.</li>
-    <li><strong>KITT</strong> reads the Current Review Packet section and responds in its own chat.</li>
-    <li><strong>Doc</strong> copies KITT's response back to C6. C6 updates the tracker and proceeds.</li>
-    <li>This page is <strong>read-only for KITT</strong>. No write path exists for KITT.</li>
-    <li>All artifacts are linked as direct public files. No auth required.</li>
-    <li>Critical content is always in plain text — never behind JS, tabs, or modals.</li>
-    <li>Each update includes a visible timestamp and step ID.</li>
-  </ul>
-</section>
+VERIFICATION:
+  curl -s -X POST http://localhost:5173/api/drafts \
+    -H "content-type: application/json" -d '{"consultant_id":"test"}'
+  → {"id":"...","status":"draft","version":1,...}
+
+  curl -s -X PUT http://localhost:5173/api/drafts/{id} \
+    -d '{"content":{"identity":{"firstName":"Robert",...}}}' → updated draft
+
+NEXT STEPS: node-4-4 template → node-4-5 fork → node-4-6 E2E
+BLOCKERS: None
+ADRs: ADR-018
+[[END COMMS BLOCK]]</pre>
+
+<h2>⚙️ Workflow Rules</h2>
+<div class="box" style="font-size:.8rem;color:var(--dim)">
+  <p><strong style="color:var(--mut)">C6</strong> implements per ADR-018 ledger-driven protocol. Updates this page at each step or significant node cluster.</p>
+  <p><strong style="color:var(--mut)">Doc</strong> sends KITT the Build Page URL + COMMS block after each step.</p>
+  <p><strong style="color:var(--mut)">KITT</strong> reviews this page and returns authorization via Doc → C6 channel. All content is plain text. No auth required.</p>
+  <p style="margin-top:8px;color:#334155">KITT directive from Step 3: carry existing editor data contract unchanged. Storage serializes current model, not reinterprets it. Immutable approved snapshots need clear boundaries — draft and approved state must not silently overwrite each other.</p>
+</div>
 
 </body>
 </html>
